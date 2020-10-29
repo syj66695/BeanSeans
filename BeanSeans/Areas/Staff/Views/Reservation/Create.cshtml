@@ -1,0 +1,75 @@
+﻿@model BeanSeans.Areas.Staff.Models.Reservation.CreateReservation
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Place Reservation</h1>
+
+<div>
+
+    <p>Sitting Type</p>
+    <p id="sitting-end">@Model.Type.Name</p>
+    <p>Date</p>
+    <p id="sitting-end">@Model.Sitting.Start.ToString("dddd, dd MMMM yyyy");</p>
+
+    <p>Start TIme</p>
+    <p id="sitting-start">@Model.Sitting.Start.ToString("hh:mm tt")</p>
+    <p>End Time</p>
+    <p id="sitting-end">@Model.Sitting.End.ToString("hh:mm tt")</p>
+
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+
+            <div class="form-group">
+                <label asp-for="Person" class="control-label"></label>
+                <select asp-for="Person" class="form-control" asp-items="ViewBag.PersonId"></select>
+            </div>
+            <input type="button" class="btn btn-primary" asp-action="Person" value="Add Person" />
+
+            <div class="form-group">
+                <label asp-for="Guest" class="control-label"></label>
+                <input asp-for="Guest" class="form-control" />
+                <span asp-validation-for="Guest" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Time" class="control-label"></label>
+                <input asp-for="Time" class="form-control" />
+                <span asp-validation-for="Time.Year" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Source" class="control-label"></label>
+                <select asp-for="Source" class="form-control" asp-items="ViewBag.SourceId"></select>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label"></label>
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
